@@ -10,17 +10,16 @@ import {
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('profile');
 
   const navigationItems = [
-    { id: 'hero', label: 'Home' },
+    { id: 'profile', label: 'Home' },
     { id: 'education', label: 'Education' },
     { id: 'courses', label: 'Courses' },
-    { id: 'olympiad', label: 'Olympiad' },
     { id: 'experience', label: 'Experience' },
     { id: 'certificates', label: 'Certificates' },
     { id: 'skills', label: 'Skills' },
-    { id: 'about', label: 'About' },
+    { id: 'family', label: 'Family' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -65,7 +64,7 @@ const Navigation = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-xs xl:text-sm font-medium transition-colors hover:text-primary px-2 py-1 rounded-md ${
+                className={`text-xs xl:text-sm font-medium hover:text-primary px-2 py-1 rounded-md ${
                   activeSection === item.id
                     ? 'text-primary bg-primary/10'
                     : 'text-muted-foreground hover:bg-accent'
@@ -93,7 +92,7 @@ const Navigation = () => {
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`text-left py-2 sm:py-3 px-3 sm:px-4 rounded-lg transition-colors hover:bg-accent text-sm sm:text-base ${
+                      className={`text-left py-2 sm:py-3 px-3 sm:px-4 rounded-lg hover:bg-accent text-sm sm:text-base ${
                         activeSection === item.id
                           ? 'bg-accent text-accent-foreground font-medium'
                           : 'text-muted-foreground'
