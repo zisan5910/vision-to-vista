@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Send,
@@ -426,7 +427,7 @@ export const LiveChat = () => {
                   <Bot className="w-5 h-5 text-white" />
                 </div>
                 <div className="bg-gray-100 rounded-2xl px-4 py-2">
-                  <div className="animate-spin">
+                  <div>
                     <Loader2 className="w-5 h-5 text-gray-500" />
                   </div>
                 </div>

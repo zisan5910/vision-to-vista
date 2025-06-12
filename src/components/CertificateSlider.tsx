@@ -215,7 +215,7 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
 
         <button
           onClick={toggleFullscreen}
-          className={`absolute top-2 right-2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 backdrop-blur-sm ${isFullscreen ? '!opacity-100' : ''}`}
+          className={`absolute top-2 right-2 p-2 bg-black/50 text-white rounded-full ${isFullscreen ? '!opacity-100' : ''}`}
           aria-label={isFullscreen ? 'Exit fullscreen' : 'View fullscreen'}
         >
           {isFullscreen ? (

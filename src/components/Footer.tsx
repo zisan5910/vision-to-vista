@@ -218,7 +218,7 @@ const Footer = ({ language, scrollToSection, content }: FooterProps) => {
           <li key={index}>
             <button
               onClick={item.action}
-              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors w-full text-left"
+              className="flex items-center gap-2 text-gray-300 hover:text-white w-full text-left"
             >
               {item.icon}
               {item.text[language]}
@@ -240,7 +240,7 @@ const Footer = ({ language, scrollToSection, content }: FooterProps) => {
           <li key={index}>
             <button
               onClick={item.action}
-              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors w-full text-left"
+              className="flex items-center gap-2 text-gray-300 hover:text-white w-full text-left"
             >
               {item.icon}
               {item.text[language]}
@@ -263,7 +263,7 @@ const Footer = ({ language, scrollToSection, content }: FooterProps) => {
             <a
               key={index}
               href={item.link}
-              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+              className="flex items-center gap-2 text-gray-300 hover:text-white"
             >
               {item.icon}
               {typeof item.text === 'string'
@@ -300,7 +300,7 @@ const Footer = ({ language, scrollToSection, content }: FooterProps) => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-gray-300 ${social.color} transition-colors duration-300`}
+                className={`text-gray-300 ${social.color}`}
                 aria-label={`Social link ${index}`}
               >
                 {social.icon}
