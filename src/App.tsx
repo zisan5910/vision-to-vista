@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Element, scroller } from 'react-scroll';
 import { UserCircle, School, BookOpen, Briefcase, FileBadge, Code, HeartHandshake, Mail, Share2 } from 'lucide-react';
@@ -76,13 +75,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Navigation 
-        navigationItems={navigationItems}
-        activeSection={activeSection}
-        scrollToSection={scrollToSection}
-        language={language}
-        setLanguage={setLanguage}
-      />
+      <Navigation />
 
       <InstallPWA language={language} />
 
