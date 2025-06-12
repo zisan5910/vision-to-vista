@@ -151,7 +151,7 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
     return (
       <div className="w-full h-[60vw] sm:h-[50vw] max-h-[400px] min-h-[250px] flex items-center justify-center bg-gray-100 rounded-lg">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-8 h-8 text-gray-500 animate-spin" />
+          <Loader2 className="w-8 h-8 text-gray-500" />
           <span className="text-gray-600 text-sm sm:text-base">
             Loading certificates...
           </span>
@@ -169,7 +169,7 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
           </div>
           <button 
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
           >
             Retry
           </button>
@@ -183,7 +183,6 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
       className={`relative w-full max-w-6xl mx-auto ${isFullscreen ? 'h-screen w-screen bg-black p-0 m-0 fixed inset-0 z-50' : 'px-2 sm:px-4'}`}
       ref={fullscreenRef}
     >
-      {/* Certificate Image Container */}
       <div 
         className={`relative group ${isFullscreen ? 'w-full h-full bg-black' : 'w-full h-[60vw] sm:h-[40vw] md:h-[35vw] lg:h-[30vw] max-h-[500px] min-h-[250px] bg-transparent'} overflow-hidden rounded-lg`}
         ref={sliderRef}
@@ -193,7 +192,7 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
       >
         <div
           key={currentIndex}
-          className={`w-full h-full flex items-center justify-center ${isFullscreen ? 'p-4 bg-black' : 'bg-transparent'} transition-opacity duration-500`}
+          className={`w-full h-full flex items-center justify-center ${isFullscreen ? 'p-4 bg-black' : 'bg-transparent'}`}
           onClick={() => {
             setShowTitle(true);
             setTimeout(() => setShowTitle(false), 3000);
@@ -214,10 +213,9 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
           />
         </div>
 
-        {/* Fullscreen Button */}
         <button
           onClick={toggleFullscreen}
-          className={`absolute top-2 right-2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm ${isFullscreen ? '!opacity-100' : ''}`}
+          className={`absolute top-2 right-2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 backdrop-blur-sm ${isFullscreen ? '!opacity-100' : ''}`}
           aria-label={isFullscreen ? 'Exit fullscreen' : 'View fullscreen'}
         >
           {isFullscreen ? (
@@ -227,9 +225,8 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
           )}
         </button>
 
-        {/* Title at Bottom Left */}
         {showTitle && (
-          <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-left transition-opacity duration-300">
+          <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-left">
             <h3 className="inline-block px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 bg-black/70 text-white text-xs sm:text-sm md:text-base font-medium sm:font-semibold rounded-md sm:rounded-lg backdrop-blur-sm">
               {certificates[currentIndex].title[language]}
             </h3>
@@ -237,17 +234,15 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
         )}
       </div>
 
-      {/* Navigation Controls */}
       {!isFullscreen && (
         <div className="mt-1 sm:mt-2 md:mt-3">
-          {/* Navigation Dots with Position Counter */}
           {certificates.length > 1 && (
             <div className="flex flex-col items-center">
               <div className="flex justify-center space-x-1 sm:space-x-1.5 mx-0.5 sm:mx-1 md:mx-2">
                 {certificates.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 hover:scale-125 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
+                    className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
                       index === currentIndex ? 'bg-green-600' : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                     onClick={() => handleDotClick(index)}
@@ -256,31 +251,27 @@ const CertificateSlider = ({ certificates, language }: CertificateSliderProps) =
                 ))}
               </div>
               
-              {/* Position Counter */}
               <div className="mt-1 px-2 py-0.5 bg-black/50 text-white text-xs rounded-md backdrop-blur-sm">
                 {currentIndex + 1} / {certificates.length}
               </div>
             </div>
           )}
 
-          {/* Arrow Navigation */}
           <div className="flex items-center justify-between w-full px-1 sm:px-2 md:px-4 mt-1 sm:mt-2">
-            {/* Left Arrow */}
             {certificates.length > 1 && (
               <button
                 onClick={handlePrevious}
-                className="p-0.5 sm:p-1 text-gray-600 hover:text-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-full"
+                className="p-0.5 sm:p-1 text-gray-600 hover:text-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-full"
                 aria-label="Previous certificate"
               >
                 <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
               </button>
             )}
 
-            {/* Right Arrow */}
             {certificates.length > 1 && (
               <button
                 onClick={handleNext}
-                className="p-0.5 sm:p-1 text-gray-600 hover:text-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-full"
+                className="p-0.5 sm:p-1 text-gray-600 hover:text-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-full"
                 aria-label="Next certificate"
               >
                 <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />

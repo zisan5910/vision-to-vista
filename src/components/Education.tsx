@@ -78,10 +78,10 @@ const Education = ({ language }: EducationProps) => {
           {educationHistory.map((education) => (
             <div
               key={education.id}
-              className="border-l-4 border-green-600 pl-4 py-4 hover:bg-green-50 rounded-r-lg transition-colors duration-200 group"
+              className="border-l-4 border-green-600 pl-4 py-4 hover:bg-green-50 rounded-r-lg group"
             >
               <div className="flex items-start gap-4">
-                <div className="p-2 bg-green-100 rounded-full group-hover:bg-green-200 transition-colors flex-shrink-0">
+                <div className="p-2 bg-green-100 rounded-full group-hover:bg-green-200 flex-shrink-0">
                   {education.icon}
                 </div>
                 <div className="flex-1">

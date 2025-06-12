@@ -82,8 +82,7 @@ const Information = ({ language, age }: InformationProps) => {
         </h2>
 
         <div className="space-y-8">
-          {/* Family Information */}
-          <div className="border-l-4 border-red-500 pl-4 py-2 hover:bg-red-50 rounded-r-lg transition-colors duration-200">
+          <div className="border-l-4 border-red-500 pl-4 py-2 hover:bg-red-50 rounded-r-lg">
             <h3 className="font-bold text-lg mb-4">
               {familyData.familyInfo.title[language]}
             </h3>
@@ -110,8 +109,7 @@ const Information = ({ language, age }: InformationProps) => {
             </ul>
           </div>
 
-          {/* Personal Information */}
-          <div className="border-l-4 border-green-500 pl-4 py-2 hover:bg-green-50 rounded-r-lg transition-colors duration-200">
+          <div className="border-l-4 border-green-500 pl-4 py-2 hover:bg-green-50 rounded-r-lg">
             <h3 className="font-bold text-lg mb-4">
               {familyData.personalInfo.title[language]}
             </h3>

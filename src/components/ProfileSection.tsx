@@ -1,3 +1,4 @@
+
 import { Element } from 'react-scroll';
 import { Download, ScrollText } from './icons';
 import { cn } from '../lib/utils';
@@ -18,11 +19,10 @@ const ProfileSection = ({
       <header
         className={cn(
           'relative pt-24 pb-16 overflow-hidden',
-          'bg-gradient-to-br from-[#0a192f] via-[#112240] to-[#0a192f]', // Deep Navy + Teal Tint
+          'bg-gradient-to-br from-[#0a192f] via-[#112240] to-[#0a192f]',
           'text-white'
         )}
       >
-        {/* Subtle Grainy Texture + Gradient Overlay */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#112240]/30 to-transparent"></div>
@@ -30,7 +30,6 @@ const ProfileSection = ({
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            {/* Profile Image with Soft Glow */}
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-[#64ffda]/30 to-[#64ffda]/10 rounded-full blur-lg opacity-60"></div>
               <div className="absolute inset-0 rounded-full border-2 border-[#64ffda]/20 mix-blend-overlay"></div>
@@ -41,7 +40,6 @@ const ProfileSection = ({
               />
             </div>
 
-            {/* Profile Content */}
             <div className="flex-1 text-center lg:text-left">
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-[#ccd6f6]">
@@ -55,13 +53,12 @@ const ProfileSection = ({
                 </p>
               </div>
 
-              {/* Action Buttons (Elegant Teal Accent) */}
               <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                 <a
                   href="/Resume.pdf"
                   download="Md Ridoan Mahmud Zisan.pdf"
                   className={cn(
-                    'px-8 py-3 rounded-md font-medium flex items-center justify-center gap-2 transition-all shadow-sm',
+                    'px-8 py-3 rounded-md font-medium flex items-center justify-center gap-2 shadow-sm',
                     'bg-[#64ffda] text-[#0a192f] hover:bg-[#52e6c4] hover:shadow-md'
                   )}
                 >
@@ -71,7 +68,7 @@ const ProfileSection = ({
                 <button
                   onClick={() => scrollToSection('certificates')}
                   className={cn(
-                    'px-8 py-3 rounded-md font-medium flex items-center justify-center gap-2 transition-all shadow-sm',
+                    'px-8 py-3 rounded-md font-medium flex items-center justify-center gap-2 shadow-sm',
                     'bg-transparent border-2 border-[#64ffda]/40 text-[#64ffda]',
                     'hover:bg-[#64ffda]/10 hover:border-[#64ffda]/60 hover:shadow-md'
                   )}

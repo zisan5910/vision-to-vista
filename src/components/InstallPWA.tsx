@@ -1,5 +1,5 @@
+
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 
 type BeforeInstallPromptEvent = Event & {
@@ -71,18 +71,13 @@ const InstallPWA = ({ language }: InstallPWAProps) => {
   if (!showButton || isInstalled) return null;
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      className="fixed left-4 bottom-4 z-50"
-    >
+    <div className="fixed left-4 bottom-4 z-50">
       <div className="relative group">
         <button 
           onClick={installApp}
           className={cn(
             "w-12 h-12 rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-700",
-            "flex items-center justify-center transition-colors duration-300",
+            "flex items-center justify-center",
             "focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           )}
           aria-label={content[language].tooltip}
@@ -91,11 +86,11 @@ const InstallPWA = ({ language }: InstallPWAProps) => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </button>
-        <div className="absolute left-14 bottom-1.5 px-2 py-1 bg-gray-800 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+        <div className="absolute left-14 bottom-1.5 px-2 py-1 bg-gray-800 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 whitespace-nowrap">
           {content[language].tooltip}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
