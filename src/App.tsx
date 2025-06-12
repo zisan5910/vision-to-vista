@@ -66,6 +66,14 @@ function App() {
     setActiveSection(section);
   };
 
+  // Create proper content object with required properties
+  const footerContent = {
+    ...content[language],
+    sections: content[language].sections,
+    contact: content[language].contact,
+    name: content[language].name
+  };
+
   return (
     <div className="min-h-screen bg-slate-50">
       <Navigation 
@@ -122,7 +130,7 @@ function App() {
         <Footer
           language={language}
           scrollToSection={scrollToSection}
-          content={content}
+          content={footerContent}
         />
       </Element>
 
