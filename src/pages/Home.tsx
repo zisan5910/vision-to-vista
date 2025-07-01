@@ -23,7 +23,7 @@ const Home = () => {
                 স্বেচ্ছায় করি রক্তদান, হাসবে রোগী বাঁচবে প্রাণ
               </h1>
               <p className="text-xl text-gray-700 mb-8">
-                রক্তদানের মাধ্যমে জীবন বাঁচানোর আমাদের মিশনে যোগ দিন বগুড়া
+                রক্তদানের মাধ্যমে জীবন বাঁচানোর আমাদের মিশনে যোগ দিন বগুড়া
                 অনলাইন রক্তদান সংগঠন (BOBDO) এর সাথে। আপনার দান কারও জীবন
                 পরিবর্তন করতে পারে।
               </p>
@@ -89,6 +89,17 @@ const Home = () => {
                   variant="outline"
                   className="border-blood-600 text-blood-600 hover:bg-blood-50"
                 >
+                  <Link to="/find-donors" className="flex items-center gap-2">
+                    ডোনার খুঁজুন
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-blood-600 text-blood-600 hover:bg-blood-50"
+                >
                   <Link
                     to="/be-a-volunteer"
                     className="flex items-center gap-2"
@@ -136,6 +147,22 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="text-center">
+                <Droplet className="h-12 w-12 mx-auto text-blood-600 mb-4" />
+                <CardTitle>রক্তদাতা খুঁজুন</CardTitle>
+                <CardDescription>প্রয়োজনীয় রক্তের গ্রুপ অনুযায়ী দাতা খুঁজুন</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  আমাদের ডাটাবেসে নিবন্ধিত রক্তদাতাদের মধ্যে থেকে আপনার প্রয়োজনীয় রক্তের গ্রুপ খুঁজুন।
+                </p>
+                <Button asChild className="w-full">
+                  <Link to="/find-donors">ডোনার খুঁজুন</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <CardHeader className="text-center">
                 <Heart className="h-12 w-12 mx-auto text-blood-600 mb-4" />
                 <CardTitle>রক্তদাতা হোন</CardTitle>
                 <CardDescription>রক্তদাতা হিসেবে যোগদান করুন</CardDescription>
@@ -161,27 +188,11 @@ const Home = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
-                  বগুড়া অনলাইন রক্তদান সংগঠন (BOBDO) এর সাথে স্বেচ্ছাসেবক হিসেবে
+                  বগুড়া অনলাইন রক্তদান সংগঠন (BOBDO) এর সাথে স্বেচ্ছাসেবক হিসেবে
                   কাজ করার অনেক উপায় আছে।
                 </p>
                 <Button asChild className="w-full">
                   <Link to="/be-a-volunteer">আরও জানুন</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <Heart className="h-12 w-12 mx-auto text-blood-600 mb-4" />
-                <CardTitle>আর্থিক অনুদান</CardTitle>
-                <CardDescription>আর্থিকভাবে সহায়তা করুন</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  যেহেতু এটি অলাভজনক প্রতিষ্ঠান। তাই আপনার আর্থিক সহায়তা আমাদের সাহায্য করতে পারে।
-                </p>
-                <Button asChild className="w-full">
-                  <Link to="/donate">আরও জানুন</Link>
                 </Button>
               </CardContent>
             </Card>

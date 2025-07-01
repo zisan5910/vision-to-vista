@@ -201,6 +201,10 @@ const NavLinks = () => {
         <BloodDrop className="h-4 w-4" />
         <span>রক্ত নিন</span>
       </Link>
+      <Link to="/find-donors" className={linkClass('/find-donors')}>
+        <BloodDrop className="h-4 w-4" />
+        <span>ডোনার খুঁজুন</span>
+      </Link>
       <Link to="/be-a-volunteer" className={linkClass('/be-a-volunteer')}>
         <HandHeart className="h-4 w-4" />
         <span>স্বেচ্ছাসেবক</span>

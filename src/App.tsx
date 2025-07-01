@@ -1,3 +1,4 @@
+
 import { Toaster } from '@/components/ui/toaster';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -8,6 +9,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import DonateBlood from './pages/DonateBlood';
 import GetBlood from './pages/GetBlood';
+import FindDonors from './pages/FindDonors';
 import BeAVolunteer from './pages/BeAVolunteer';
 import Donate from './pages/Donate';
 import Contacts from './pages/Contacts';
@@ -67,6 +69,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/donate-blood" element={<DonateBlood />} />
               <Route path="/get-blood" element={<GetBlood />} />
+              <Route path="/find-donors" element={<FindDonors />} />
               <Route path="/be-a-volunteer" element={<BeAVolunteer />} />
               <Route path="/donate" element={<Donate />} />
               <Route path="/contacts" element={<Contacts />} />
