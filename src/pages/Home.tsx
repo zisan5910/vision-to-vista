@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, Users, BookOpen, Facebook, Droplet } from 'lucide-react';
+import { ArrowRight, Heart, Users, BookOpen, Facebook, Droplet, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -119,6 +119,17 @@ const Home = () => {
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                 </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-blood-600 text-blood-600 hover:bg-blood-50"
+                >
+                  <Link to="/certificate" className="flex items-center gap-2">
+                    সার্টিফিকেট
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                </Button>
               </div>
             </div>
             <div className="md:w-1/2 flex justify-center">
@@ -144,7 +155,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-center mb-12">
             আপনি কিভাবে সাহায্য করতে পারেন
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="text-center">
                 <Droplet className="h-12 w-12 mx-auto text-blood-600 mb-4" />
@@ -193,6 +204,24 @@ const Home = () => {
                 </p>
                 <Button asChild className="w-full">
                   <Link to="/be-a-volunteer">আরও জানুন</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <CardHeader className="text-center">
+                <Award className="h-12 w-12 mx-auto text-blood-600 mb-4" />
+                <CardTitle>সার্টিফিকেট পান</CardTitle>
+                <CardDescription>
+                  আপনার অবদানের স্বীকৃতি নিন
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  রক্তদান ও স্বেচ্ছাসেবার জন্য প্রাতিষ্ঠানিক সার্টিফিকেট পান।
+                </p>
+                <Button asChild className="w-full">
+                  <Link to="/certificate">আবেদন করুন</Link>
                 </Button>
               </CardContent>
             </Card>

@@ -14,6 +14,7 @@ import {
   Info,
   Phone,
   Building2,
+  Award,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -212,6 +213,10 @@ const NavLinks = () => {
       <Link to="/donate" className={linkClass('/donate')}>
         <HeartHandshake className="h-4 w-4" />
         <span>আর্থিক অনুদান</span>
+      </Link>
+      <Link to="/certificate" className={linkClass('/certificate')}>
+        <Award className="h-4 w-4" />
+        <span>সার্টিফিকেট</span>
       </Link>
       <Link to="/hospitals" className={linkClass('/hospitals')}>
         <Building2 className="h-4 w-4" />
