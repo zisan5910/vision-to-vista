@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, Users, BookOpen, Facebook, Droplet, Award } from 'lucide-react';
+import { ArrowRight, Heart, Users, BookOpen, Facebook, Droplet, Award, Building2, HandHeart, HeartHandshake, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -12,22 +13,68 @@ import {
 import Stats from '@/components/Stats';
 
 const Home = () => {
+  const quickActions = [
+    {
+      title: 'রক্তদাতা খুঁজুন',
+      description: 'প্রয়োজনীয় রক্তের গ্রুপ অনুযায়ী দাতা খুঁজুন',
+      icon: <Droplet className="h-8 w-8 text-blood-600" />,
+      link: '/find-donors',
+      color: 'bg-red-50 hover:bg-red-100'
+    },
+    {
+      title: 'রক্তদাতা হোন',
+      description: 'রক্তদাতা হিসেবে যোগদান করুন',
+      icon: <Heart className="h-8 w-8 text-blood-600" />,
+      link: '/donate-blood',
+      color: 'bg-pink-50 hover:bg-pink-100'
+    },
+    {
+      title: 'স্বেচ্ছাসেবক হোন',
+      description: 'স্বেচ্ছাসেবক হিসেবে যোগদান করুন',
+      icon: <Users className="h-8 w-8 text-blood-600" />,
+      link: '/be-a-volunteer',
+      color: 'bg-blue-50 hover:bg-blue-100'
+    },
+    {
+      title: 'সার্টিফিকেট পান',
+      description: 'আপনার অবদানের স্বীকৃতি নিন',
+      icon: <Award className="h-8 w-8 text-blood-600" />,
+      link: '/certificate',
+      color: 'bg-yellow-50 hover:bg-yellow-100'
+    },
+    {
+      title: 'হাসপাতাল তালিকা',
+      description: 'নিকটস্থ হাসপাতালের তথ্য পান',
+      icon: <Building2 className="h-8 w-8 text-blood-600" />,
+      link: '/hospitals',
+      color: 'bg-green-50 hover:bg-green-100'
+    },
+    {
+      title: 'আর্থিক অনুদান',
+      description: 'সংগঠনকে আর্থিক সহায়তা প্রদান করুন',
+      icon: <HeartHandshake className="h-8 w-8 text-blood-600" />,
+      link: '/donate',
+      color: 'bg-purple-50 hover:bg-purple-100'
+    }
+  ];
+
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero-gradient py-16 md:py-24">
+      <section className="hero-gradient py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold text-blood-700 leading-tight mb-4">
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="lg:w-1/2">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-blood-700 leading-tight mb-4">
                 স্বেচ্ছায় করি রক্তদান, হাসবে রোগী বাঁচবে প্রাণ
               </h1>
-              <p className="text-xl text-gray-700 mb-8">
+              <p className="text-lg md:text-xl text-gray-700 mb-6">
                 রক্তদানের মাধ্যমে জীবন বাঁচানোর আমাদের মিশনে যোগ দিন বগুড়া
-                অনলাইন রক্তদান সংগঠন (BOBDO) এর সাথে। আপনার দান কারও জীবন
-                পরিবর্তন করতে পারে।
+                অনলাইন রক্তদান সংগঠন (BOBDO) এর সাথে।
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              
+              {/* Social Links */}
+              <div className="flex flex-wrap gap-3 mb-6">
                 <Button
                   asChild
                   size="lg"
@@ -40,14 +87,14 @@ const Home = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    <Facebook className="h-5 w-5" />
+                    <Facebook className="h-4 w-4" />
                     ফেসবুক গ্রুপ
                   </a>
                 </Button>
                 <Button
                   asChild
                   size="lg"
-                  variant="outline"
+                  variant="outline" 
                   className="border-blood-600 text-blood-600 hover:bg-blood-50"
                 >
                   <a 
@@ -56,22 +103,24 @@ const Home = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    <Facebook className="h-5 w-5" />
+                    <Facebook className="h-4 w-4" />
                     ফেসবুক পেজ
                   </a>
                 </Button>
+              </div>
+
+              {/* Main Action Buttons */}
+              <div className="flex flex-wrap gap-3">
                 <Button
                   asChild
                   size="lg"
                   className="bg-blood-600 hover:bg-blood-700"
                 >
                   <Link to="/donate-blood" className="flex items-center gap-2">
-                    <Droplet className="h-5 w-5" />
+                    <Droplet className="h-4 w-4" />
                     রক্ত দিন
                   </Link>
                 </Button>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-4">
                 <Button
                   asChild
                   size="lg"
@@ -80,65 +129,19 @@ const Home = () => {
                 >
                   <Link to="/get-blood" className="flex items-center gap-2">
                     রক্ত নিন
-                    <ArrowRight className="h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-blood-600 text-blood-600 hover:bg-blood-50"
-                >
-                  <Link to="/find-donors" className="flex items-center gap-2">
-                    ডোনার খুঁজুন
-                    <ArrowRight className="h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-blood-600 text-blood-600 hover:bg-blood-50"
-                >
-                  <Link
-                    to="/be-a-volunteer"
-                    className="flex items-center gap-2"
-                  >
-                    স্বেচ্ছাসেবক
-                    <ArrowRight className="h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-blood-600 text-blood-600 hover:bg-blood-50"
-                >
-                  <Link to="/donate" className="flex items-center gap-2">
-                    আর্থিক অনুদান
-                    <ArrowRight className="h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-blood-600 text-blood-600 hover:bg-blood-50"
-                >
-                  <Link to="/certificate" className="flex items-center gap-2">
-                    সার্টিফিকেট
-                    <ArrowRight className="h-5 w-5" />
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
               </div>
             </div>
-            <div className="md:w-1/2 flex justify-center">
+            
+            <div className="lg:w-1/2 flex justify-center">
               <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-blood-100 animate-pulse-slow"></div>
+                <div className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full bg-blood-100 animate-pulse-slow"></div>
                 <img 
                   src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
                   alt="BOBDO Logo" 
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-32 w-32 md:h-40 md:w-40 object-contain"
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40 object-contain"
                 />
               </div>
             </div>
@@ -150,79 +153,63 @@ const Home = () => {
       <Stats />
 
       {/* Quick Access Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
             আপনি কিভাবে সাহায্য করতে পারেন
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <Droplet className="h-12 w-12 mx-auto text-blood-600 mb-4" />
-                <CardTitle>রক্তদাতা খুঁজুন</CardTitle>
-                <CardDescription>প্রয়োজনীয় রক্তের গ্রুপ অনুযায়ী দাতা খুঁজুন</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  আমাদের ডাটাবেসে নিবন্ধিত রক্তদাতাদের মধ্যে থেকে আপনার প্রয়োজনীয় রক্তের গ্রুপ খুঁজুন।
-                </p>
-                <Button asChild className="w-full">
-                  <Link to="/find-donors">ডোনার খুঁজুন</Link>
-                </Button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {quickActions.map((action, index) => (
+              <Card key={index} className={`shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 ${action.color} border-0`}>
+                <CardHeader className="text-center pb-4">
+                  <div className="mb-3">{action.icon}</div>
+                  <CardTitle className="text-lg">{action.title}</CardTitle>
+                  <CardDescription className="text-sm">{action.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <Button asChild className="w-full bg-blood-600 hover:bg-blood-700">
+                    <Link to={action.link}>
+                      {action.title === 'রক্তদাতা খুঁজুন' ? 'খুঁজুন' : 
+                       action.title === 'সার্টিফিকেট পান' ? 'আবেদন করুন' :
+                       action.title === 'হাসপাতাল তালিকা' ? 'দেখুন' : 'আরও জানুন'}
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+            জরুরি যোগাযোগ
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <Card className="shadow-md hover:shadow-lg transition-shadow">
+              <CardContent className="p-6 text-center">
+                <Phone className="h-8 w-8 text-blood-600 mx-auto mb-4" />
+                <h3 className="font-semibold text-gray-900 mb-2">জরুরি হটলাইন</h3>  
+                <a
+                  href="tel:01722528164"
+                  className="text-blood-600 hover:text-blood-700 font-medium"
+                >
+                  ০১৭২২-৫২৮১৬৪
+                </a>
               </CardContent>
             </Card>
-
-            <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <Heart className="h-12 w-12 mx-auto text-blood-600 mb-4" />
-                <CardTitle>রক্তদাতা হোন</CardTitle>
-                <CardDescription>রক্তদাতা হিসেবে যোগদান করুন</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  আমাদের দাতা ডাটাবেসে যোগ দিন এবং নিশ্চিত করুন যে রক্ত প্রয়োজন
-                  হলে তা পাওয়া যাবে।
-                </p>
-                <Button asChild className="w-full">
-                  <Link to="/donate-blood">আরও জানুন</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <Users className="h-12 w-12 mx-auto text-blood-600 mb-4" />
-                <CardTitle>স্বেচ্ছাসেবক হোন</CardTitle>
-                <CardDescription>
-                  স্বেচ্ছাসেবক হিসেবে যোগদান করুন
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  বগুড়া অনলাইন রক্তদান সংগঠন (BOBDO) এর সাথে স্বেচ্ছাসেবক হিসেবে
-                  কাজ করার অনেক উপায় আছে।
-                </p>
-                <Button asChild className="w-full">
-                  <Link to="/be-a-volunteer">আরও জানুন</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="text-center">
-                <Award className="h-12 w-12 mx-auto text-blood-600 mb-4" />
-                <CardTitle>সার্টিফিকেট পান</CardTitle>
-                <CardDescription>
-                  আপনার অবদানের স্বীকৃতি নিন
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  রক্তদান ও স্বেচ্ছাসেবার জন্য প্রাতিষ্ঠানিক সার্টিফিকেট পান।
-                </p>
-                <Button asChild className="w-full">
-                  <Link to="/certificate">আবেদন করুন</Link>
-                </Button>
+            <Card className="shadow-md hover:shadow-lg transition-shadow">
+              <CardContent className="p-6 text-center">
+                <Mail className="h-8 w-8 text-blood-600 mx-auto mb-4" />
+                <h3 className="font-semibold text-gray-900 mb-2">ইমেইল</h3>
+                <a
+                  href="mailto:bobdo5800@gmail.com"
+                  className="text-blood-600 hover:text-blood-700 font-medium"
+                >
+                  bobdo5800@gmail.com
+                </a>
               </CardContent>
             </Card>
           </div>
@@ -230,13 +217,13 @@ const Home = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-blood-600 text-white py-16">
+      <section className="bg-blood-600 text-white py-12">
         <div className="container mx-auto px-4 text-center">
-          <BookOpen className="h-16 w-16 mx-auto mb-6" />
-          <h2 className="text-3xl font-bold mb-4">
+          <BookOpen className="h-12 w-12 mx-auto mb-4" />
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
             প্রয়োজনীয় চিকিৎসা জ্ঞান
           </h2>
-          <p className="text-xl max-w-3xl mx-auto mb-8">
+          <p className="text-lg max-w-2xl mx-auto mb-6">
             রক্তদান, প্রাথমিক চিকিৎসা এবং সিপিআর এর সম্পর্কে বিস্তারিত জানুন এবং
             একজন সুপার হিরো হিসেবে কাজ করুন।
           </p>

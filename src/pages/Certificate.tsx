@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Award, FileText, Download, Users, CheckCircle, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -9,179 +8,149 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import FormCard from '@/components/FormCard';
 import PageHeader from '@/components/PageHeader';
+import {
+  Award,
+  FileText,
+  Download,
+  CheckCircle,
+  Clock,
+  Star,
+} from 'lucide-react';
 
 const Certificate = () => {
+  const certificateTypes = [
+    {
+      title: 'রক্তদান সার্টিফিকেট',
+      description: 'নিয়মিত রক্তদানের জন্য প্রাতিষ্ঠানিক স্বীকৃতি',
+      icon: <Award className="h-8 w-8 text-blood-600" />,
+      requirements: ['কমপক্ষে ৩ বার রক্তদান', 'সংগঠনের সদস্যপদ'],
+    },
+    {
+      title: 'স্বেচ্ছাসেবক সার্টিফিকেট',
+      description: 'স্বেচ্ছাসেবামূলক কাজের জন্য প্রশংসাপত্র',
+      icon: <Star className="h-8 w-8 text-blood-600" />,
+      requirements: ['৬ মাসের স্বেচ্ছাসেবা', 'কমিউনিটি সার্ভিস অংশগ্রহণ'],
+    },
+    {
+      title: 'অংশগ্রহণ সার্টিফিকেট',
+      description: 'বিভিন্ন কর্মসূচিতে অংশগ্রহণের সার্টিফিকেট',
+      icon: <CheckCircle className="h-8 w-8 text-blood-600" />,
+      requirements: ['ইভেন্টে অংশগ্রহণ', 'কার্যক্রম সম্পন্ন করা'],
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <PageHeader
         title="সার্টিফিকেট আবেদন"
-        description="BOBDO থেকে রক্তদান ও স্বেচ্ছাসেবার সার্টিফিকেট পান। আপনার অবদানের স্বীকৃতি নিন।"
-        icon={<Award className="h-12 w-12 text-blood-600" />}
+        description="বগুড়া অনলাইন রক্তদান সংগঠন থেকে বিভিন্ন ধরনের সার্টিফিকেটের জন্য আবেদন করুন।"
       />
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Certificate Types */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            সার্টিফিকেটের ধরন
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="shadow-md hover:shadow-lg transition-shadow">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {certificateTypes.map((cert, index) => (
+            <Card key={index} className="shadow-md hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <FileText className="h-12 w-12 mx-auto text-blood-600 mb-4" />
-                <CardTitle>রক্তদান সার্টিফিকেট</CardTitle>
+                {cert.icon}
+                <CardTitle className="mt-4">{cert.title}</CardTitle>
+                <CardDescription>{cert.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-center">
-                  রক্তদানের জন্য স্বীকৃতিপত্র। ন্যূনতম ৩ বার রক্তদান করতে হবে।
-                </CardDescription>
-                <div className="mt-4 text-center">
-                  <span className="text-sm text-gray-500">যোগ্যতা: ৩+ রক্তদান</span>
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-gray-900">প্রয়োজনীয় যোগ্যতা:</h4>
+                  <ul className="space-y-2">
+                    {cert.requirements.map((req, reqIndex) => (
+                      <li key={reqIndex} className="flex items-center text-sm text-gray-600">
+                        <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                        {req}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </CardContent>
             </Card>
+          ))}
+        </div>
 
-            <Card className="shadow-md hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <Users className="h-12 w-12 mx-auto text-blood-600 mb-4" />
-                <CardTitle>স্বেচ্ছাসেবক সার্টিফিকেট</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  স্বেচ্ছাসেবার জন্য প্রশংসাপত্র। ন্যূনতম ৬ মাস সক্রিয় থাকতে হবে।
-                </CardDescription>
-                <div className="mt-4 text-center">
-                  <span className="text-sm text-gray-500">যোগ্যতা: ৬+ মাস সেবা</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-md hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <Award className="h-12 w-12 mx-auto text-blood-600 mb-4" />
-                <CardTitle>বিশেষ অবদান সার্টিফিকেট</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  বিশেষ অবদানের জন্য সম্মাননা। উল্লেখযোগ্য সেবার জন্য প্রদান করা হয়।
-                </CardDescription>
-                <div className="mt-4 text-center">
-                  <span className="text-sm text-gray-500">যোগ্যতা: বিশেষ অবদান</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Benefits Section */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            সার্টিফিকেটের সুবিধা
+        {/* Application Process */}
+        <div className="bg-white rounded-lg shadow-md p-8 mb-8">
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            আবেদন প্রক্রিয়া
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
-                <CheckCircle className="h-6 w-6 text-green-600 mr-2" />
-                ক্যারিয়ার বেনিফিট
-              </h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• চাকরির আবেদনে অতিরিক্ত যোগ্যতা</li>
-                <li>• সামাজিক দায়বদ্ধতার প্রমাণ</li>
-                <li>• শিক্ষাবৃত্তির আবেদনে সহায়ক</li>
-                <li>• ভিসা আবেদনে সহায়ক দলিল</li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
-                <CheckCircle className="h-6 w-6 text-green-600 mr-2" />
-                সামাজিক স্বীকৃতি
-              </h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• সমাজে সম্মানজনক অবস্থান</li>
-                <li>• মানবিক মূল্যবোধের প্রতিফলন</li>
-                <li>• অন্যদের অনুপ্রাণিত করার ক্ষমতা</li>
-                <li>• সামাজিক নেটওয়ার্ক বৃদ্ধি</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Application Requirements */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            আবেদনের শর্তাবলী
-          </h2>
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">প্রয়োজনীয় কাগজপত্র</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• জাতীয় পরিচয়পত্রের কপি</li>
-                  <li>• পাসপোর্ট সাইজ ছবি (২ কপি)</li>
-                  <li>• রক্তদানের রেকর্ড/প্রমাণপত্র</li>
-                  <li>• স্বেচ্ছাসেবার কার্যক্রমের প্রমাণ (যদি থাকে)</li>
-                </ul>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="bg-blood-50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <FileText className="h-8 w-8 text-blood-600" />
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4">যোগ্যতার মানদণ্ড</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• বয়স ১৮-৬৫ বছরের মধ্যে</li>
-                  <li>• BOBDO এর নিবন্ধিত সদস্য</li>
-                  <li>• নিয়মিত কার্যক্রমে অংশগ্রহণ</li>
-                  <li>• সংগঠনের নিয়মকানুন মেনে চলা</li>
-                </ul>
+              <h3 className="font-semibold text-gray-900 mb-2">১. ফর্ম পূরণ</h3>
+              <p className="text-sm text-gray-600">
+                নিচের গুগল ফর্মটি সঠিকভাবে পূরণ করুন
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blood-50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Clock className="h-8 w-8 text-blood-600" />
               </div>
+              <h3 className="font-semibold text-gray-900 mb-2">২. যাচাইকরণ</h3>
+              <p className="text-sm text-gray-600">
+                আমরা আপনার তথ্য যাচাই করব (৭-১০ দিন)
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blood-50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Award className="h-8 w-8 text-blood-600" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">৩. অনুমোদন</h3>
+              <p className="text-sm text-gray-600">
+                যোগ্যতা অনুযায়ী সার্টিফিকেট প্রস্তুত করা হবে
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blood-50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Download className="h-8 w-8 text-blood-600" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">৪. প্রাপ্তি</h3>
+              <p className="text-sm text-gray-600">
+                ইমেইলে সার্টিফিকেট পাঠানো হবে
+              </p>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Application Form */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            সার্টিফিকেট আবেদন ফর্ম
-          </h2>
-          <div className="max-w-2xl mx-auto">
-            <FormCard
-              title="সার্টিফিকেটের জন্য আবেদন করুন"
-              description="নিচের ফর্মটি পূরণ করে আপনার সার্টিফিকেটের জন্য আবেদন করুন। আমরা ৭-১০ কার্যদিবসের মধ্যে আপনার আবেদন যাচাই করে সার্টিফিকেট প্রদান করব।"
-              formLink="https://forms.google.com/certificate-application"
-              buttonText="আবেদন করুন"
-              icon={<Award className="h-8 w-8" />}
-            />
-          </div>
-        </section>
-
-        {/* Download Sample */}
-        <section className="bg-white rounded-lg shadow-md p-8">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            নমুনা সার্টিফিকেট
-          </h2>
-          <div className="text-center">
-            <p className="text-gray-600 mb-6">
-              আপনি যে ধরনের সার্টিফিকেট পাবেন তার একটি নমুনা দেখুন
-            </p>
-            <Button 
-              variant="outline" 
-              className="border-blood-600 text-blood-600 hover:bg-blood-50"
-              asChild
-            >
-              <a
-                href="#"
-                className="flex items-center gap-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert('নমুনা সার্টিফিকেট শীঘ্রই উপলব্ধ হবে');
-                }}
+        {/* Application Form Button */}
+        <div className="text-center">
+          <Card className="max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle className="text-2xl text-blood-600">
+                সার্টিফিকেটের জন্য আবেদন করুন
+              </CardTitle>
+              <CardDescription>
+                নিচের ফর্মটি পূরণ করে আপনার পছন্দের সার্টিফিকেটের জন্য আবেদন করুন
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button
+                asChild
+                size="lg"
+                className="bg-blood-600 hover:bg-blood-700 w-full"
               >
-                <Download className="h-4 w-4" />
-                নমুনা ডাউনলোড করুন
-              </a>
-            </Button>
-          </div>
-        </section>
+                <a
+                  href="https://forms.google.com/certificate-application"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2"
+                >
+                  <FileText className="h-5 w-5" />
+                  সার্টিফিকেট আবেদন ফর্ম
+                </a>
+              </Button>
+              <p className="text-sm text-gray-500 mt-4">
+                * আবেদনের পূর্বে নিশ্চিত করুন যে আপনি সংশ্লিষ্ট সার্টিফিকেটের যোগ্যতা পূরণ করেছেন
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
