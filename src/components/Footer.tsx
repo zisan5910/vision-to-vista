@@ -9,6 +9,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  ExternalLink,
 } from 'lucide-react';
 
 const Footer = () => {
@@ -23,116 +24,91 @@ const Footer = () => {
 
   const quickLinks = [
     { to: '/', text: 'হোম' },
-    { to: '/donate-blood', text: 'রক্ত দিন' },
-    { to: '/get-blood', text: 'রক্ত নিন' },
     { to: '/find-donors', text: 'ডোনার খুঁজুন' },
-    { to: '/hospitals', text: 'হাসপাতাল' },
+    { to: '/donate-blood', text: 'রক্ত দিন' },
+    { to: '/be-a-volunteer', text: 'স্বেচ্ছাসেবক' },
+    { to: '/certificate', text: 'সার্টিফিকেট' },
     { to: '/about-us', text: 'আমাদের সম্পর্কে' },
   ];
 
-  const serviceLinks = [
-    { to: '/be-a-volunteer', text: 'স্বেচ্ছাসেবক হোন' },
-    { to: '/donate', text: 'আর্থিক অনুদান' },
-    { to: '/certificate', text: 'সার্টিফিকেট' },
-    { to: '/medical-knowledge', text: 'চিকিৎসা জ্ঞান' },
-    { to: '/notice', text: 'নোটিশ' },
-    { to: '/contacts', text: 'যোগাযোগ' },
-  ];
-
   return (
-    <footer className="bg-gray-900 text-white py-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+    <footer className="bg-gray-900 text-white">
+      <div className="container mx-auto px-4 py-8">
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
           {/* Organization Info */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-3">
-              <Droplet className="h-5 w-5 text-blood-500" />
-              <span className="text-lg font-bold">BOBDO</span>
+          <div className="text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start space-x-2 mb-3">
+              <Droplet className="h-6 w-6 text-blood-500" />
+              <span className="text-xl font-bold">BOBDO</span>
             </div>
-            <p className="text-gray-400 text-sm mb-4">
-              বগুড়া অনলাইন রক্তদান সংগঠন (BOBDO) স্বেচ্ছায় রক্তদানের মাধ্যমে
-              জীবন বাঁচাতে নিবেদিত।
+            <p className="text-gray-400 text-sm mb-4 max-w-xs mx-auto md:mx-0">
+              বগুড়া অনলাইন রক্তদান সংগঠন - স্বেচ্ছায় রক্তদানের মাধ্যমে জীবন বাঁচাতে নিবেদিত।
             </p>
-            <div className="flex space-x-3">
+            
+            {/* Social Links */}
+            <div className="flex justify-center md:justify-start space-x-4">
               <a
                 href="https://www.facebook.com/bobdo.official"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Facebook"
+                className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800"
+                aria-label="Facebook Page"
               >
-                <Facebook className="h-4 w-4" />
+                <Facebook className="h-5 w-5" />
               </a>
               <a
                 href="https://www.facebook.com/groups/BOBO.BD"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800"
                 aria-label="Facebook Group"
               >
-                <Users className="h-4 w-4" />
+                <Users className="h-5 w-5" />
               </a>
               <a
                 href="https://youtube.com/@BograOnlineBloodDonationOrgani"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800"
                 aria-label="YouTube"
               >
-                <Youtube className="h-4 w-4" />
+                <Youtube className="h-5 w-5" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-sm font-semibold mb-3">দ্রুত লিংক</h3>
-            <ul className="space-y-2">
+          <div className="text-center md:text-left">
+            <h3 className="text-lg font-semibold mb-4">দ্রুত লিংক</h3>
+            <div className="grid grid-cols-2 gap-2">
               {quickLinks.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
-                  >
-                    {link.text}
-                  </Link>
-                </li>
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="text-gray-400 hover:text-white transition-colors text-sm py-1 hover:underline"
+                >
+                  {link.text}
+                </Link>
               ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-sm font-semibold mb-3">সেবাসমূহ</h3>
-            <ul className="space-y-2">
-              {serviceLinks.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
-                  >
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h3 className="text-sm font-semibold mb-3">যোগাযোগ</h3>
-            <ul className="space-y-2">
-              <li className="flex items-center space-x-2">
-                <Phone className="h-3 w-3 text-gray-400" />
+          <div className="text-center md:text-left">
+            <h3 className="text-lg font-semibold mb-4">যোগাযোগ</h3>
+            <div className="space-y-3">
+              <div className="flex items-center justify-center md:justify-start space-x-2">
+                <Phone className="h-4 w-4 text-gray-400" />
                 <a
                   href="tel:01722528164"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  ০১৭২২-৫২৮১৬৤
+                  ০১৭২২-৫২৮১৬৪
                 </a>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Mail className="h-3 w-3 text-gray-400" />
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-2">
+                <Mail className="h-4 w-4 text-gray-400" />
                 <a
                   href={getEmailLink()}
                   className="text-gray-400 hover:text-white transition-colors text-sm"
@@ -141,21 +117,23 @@ const Footer = () => {
                 >
                   bobdo5800@gmail.com
                 </a>
-              </li>
-              <li className="flex items-start space-x-2">
-                <MapPin className="h-3 w-3 text-gray-400 mt-0.5" />
-                <span className="text-gray-400 text-sm">
-                  বিআরটিসি শপিং কমপ্লক্স ৩য় তলা, সাতমাথা, বগুড়া
+              </div>
+              <div className="flex items-start justify-center md:justify-start space-x-2">
+                <MapPin className="h-4 w-4 text-gray-400 mt-0.5" />
+                <span className="text-gray-400 text-sm text-center md:text-left">
+                  বিআরটিসি শপিং কমপ্লেক্স ৩য় তলা, সাতমাথা, বগুড়া
                 </span>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="pt-4 border-t border-gray-800">
-          <div className="text-center text-gray-400 text-sm">
-            <p>&copy; 2016 BOBDO. All rights reserved.</p>
+        <div className="pt-6 border-t border-gray-800">
+          <div className="text-center">
+            <p className="text-gray-400 text-sm">
+              &copy; 2016 BOBDO. সকল অধিকার সংরক্ষিত।
+            </p>
           </div>
         </div>
       </div>

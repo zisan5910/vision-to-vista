@@ -16,8 +16,21 @@ import {
   Phone,
   Building2,
   Award,
+  ChevronDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import {
   Tooltip,
   TooltipContent,
@@ -25,18 +38,18 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { scrollToTop } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const location = useLocation();
-  const menuRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location]);
+    setIsSheetOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,109 +61,182 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
-    
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
-    };
-  }, []);
-
   return (
     <>
       <header
-        className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm transition-all duration-300 ${
-          isScrolled ? 'shadow-md' : 'shadow-sm'
+        className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm transition-all duration-300 border-b ${
+          isScrolled ? 'shadow-lg' : 'shadow-sm'
         }`}
       >
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-          <Link
-            to="/"
-            className="flex items-center space-x-2 transition-transform hover:scale-105 shrink-0"
-            onClick={() => scrollToTop()}
-          >
-            <img 
-              src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
-              alt="BOBDO Logo"
-              className="h-8 w-8 object-contain"
-            />
-            <span className="text-xl font-bold text-blood-600">BOBDO</span>
-          </Link>
+        <div className="container mx-auto px-3 py-2">
+          <div className="flex items-center justify-between h-12">
+            {/* Logo */}
+            <Link
+              to="/"
+              className="flex items-center space-x-2 transition-transform hover:scale-105 shrink-0"
+              onClick={() => scrollToTop()}
+            >
+              <img 
+                src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
+                alt="BOBDO Logo"
+                className="h-8 w-8 object-contain"
+              />
+              <span className="text-lg font-bold text-blood-600">BOBDO</span>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center">
-            <div className="flex items-center space-x-1 overflow-x-auto scrollbar-hide">
-              <NavLinks />
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-1">
+              <NavButton to="/" icon={Home} text="হোম" />
+              
+              {/* Blood Services Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-10 px-3">
+                    <BloodDrop className="h-4 w-4 mr-1" />
+                    রক্তদান
+                    <ChevronDown className="h-3 w-3 ml-1" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <Link to="/donate-blood" className="flex items-center">
+                      <BloodDrop className="h-4 w-4 mr-2" />
+                      রক্ত দিন
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/get-blood" className="flex items-center">
+                      <BloodDrop className="h-4 w-4 mr-2" />
+                      রক্ত নিন
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/find-donors" className="flex items-center">
+                      <BloodDrop className="h-4 w-4 mr-2" />
+                      ডোনার খুঁজুন
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Services Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-10 px-3">
+                    <HandHeart className="h-4 w-4 mr-1" />
+                    সেবা
+                    <ChevronDown className="h-3 w-3 ml-1" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <Link to="/be-a-volunteer" className="flex items-center">
+                      <HandHeart className="h-4 w-4 mr-2" />
+                      স্বেচ্ছাসেবক
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/donate" className="flex items-center">
+                      <HeartHandshake className="h-4 w-4 mr-2" />
+                      আর্থিক অনুদান
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/certificate" className="flex items-center">
+                      <Award className="h-4 w-4 mr-2" />
+                      সার্টিফিকেট
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/hospitals" className="flex items-center">
+                      <Building2 className="h-4 w-4 mr-2" />
+                      হাসপাতাল
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Info Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-10 px-3">
+                    <Info className="h-4 w-4 mr-1" />
+                    তথ্য
+                    <ChevronDown className="h-3 w-3 ml-1" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <Link to="/notice" className="flex items-center">
+                      <Bell className="h-4 w-4 mr-2" />
+                      নোটিশ
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/medical-knowledge" className="flex items-center">
+                      <BookOpen className="h-4 w-4 mr-2" />
+                      চিকিৎসা জ্ঞান
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/about-us" className="flex items-center">
+                      <Info className="h-4 w-4 mr-2" />
+                      আমাদের সম্পর্কে
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/contacts" className="flex items-center">
+                      <Phone className="h-4 w-4 mr-2" />
+                      যোগাযোগ
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://ridoan-zisan.netlify.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-700 hover:text-blood-600 transition-colors p-2 rounded hover:bg-blood-50"
+                    >
+                      <Code2 className="h-4 w-4" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Developer Info</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </nav>
+
+            {/* Mobile Menu */}
+            <div className="lg:hidden">
+              <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-10 w-10">
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-80 p-0">
+                  <div className="p-6">
+                    <div className="flex items-center space-x-2 mb-6">
+                      <img 
+                        src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
+                        alt="BOBDO Logo"
+                        className="h-8 w-8 object-contain"
+                      />
+                      <span className="text-lg font-bold text-blood-600">BOBDO</span>
+                    </div>
+                    <MobileNavLinks onLinkClick={() => setIsSheetOpen(false)} />
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <a
-                    href="https://ridoan-zisan.netlify.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-700 hover:text-blood-600 transition-colors ml-3 shrink-0"
-                  >
-                    <Code2 className="h-4 w-4" />
-                  </a>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Developer Info</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <Button
-              ref={buttonRef}
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="hover:bg-blood-50"
-            >
-              {isMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div
-          ref={menuRef}
-          className={`lg:hidden bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300 ease-in-out overflow-hidden ${
-            isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className="container mx-auto px-4 py-4 grid grid-cols-2 gap-2">
-            <NavLinks mobile />
-            <a
-              href="https://ridoan-zisan.netlify.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-gray-700 hover:text-blood-600 transition-colors py-2 px-2 rounded hover:bg-blood-50 text-sm col-span-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Code2 className="h-4 w-4" />
-              <span>Developer Info</span>
-            </a>
           </div>
         </div>
       </header>
@@ -161,10 +247,10 @@ const Header = () => {
           <Button
             variant="secondary"
             size="icon"
-            className="rounded-full shadow-lg bg-blood-600 text-white hover:bg-blood-700"
+            className="rounded-full shadow-lg bg-blood-600 text-white hover:bg-blood-700 h-12 w-12"
             onClick={scrollToTop}
           >
-            <ArrowUp className="h-4 w-4" />
+            <ArrowUp className="h-5 w-5" />
           </Button>
         </div>
       )}
@@ -172,21 +258,36 @@ const Header = () => {
   );
 };
 
-const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
+const NavButton = ({ to, icon: Icon, text }: { to: string; icon: any; text: string }) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+
+  return (
+    <Link
+      to={to}
+      className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+        isActive
+          ? 'text-blood-600 bg-blood-50'
+          : 'text-gray-700 hover:text-blood-600 hover:bg-blood-50'
+      }`}
+    >
+      <Icon className="h-4 w-4" />
+      {text}
+    </Link>
+  );
+};
+
+const MobileNavLinks = ({ onLinkClick }: { onLinkClick: () => void }) => {
   const location = useLocation();
 
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
+  const isActive = (path: string) => location.pathname === path;
 
   const linkClass = (path: string) => `
-    relative flex items-center gap-1 text-gray-700 hover:text-blood-600 font-medium transition-colors py-2 px-2 rounded hover:bg-blood-50
-    ${mobile ? 'text-sm' : 'text-xs lg:text-sm'}
-    whitespace-nowrap
+    flex items-center space-x-3 px-4 py-3 rounded-lg text-base font-medium transition-colors
     ${
       isActive(path)
         ? 'text-blood-600 bg-blood-50'
-        : ''
+        : 'text-gray-700 hover:text-blood-600 hover:bg-blood-50'
     }
   `;
 
@@ -195,7 +296,7 @@ const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
     { to: '/donate-blood', icon: BloodDrop, text: 'রক্ত দিন' },
     { to: '/get-blood', icon: BloodDrop, text: 'রক্ত নিন' },
     { to: '/find-donors', icon: BloodDrop, text: 'ডোনার খুঁজুন' },
-    { to: '/be-a-volunteer', icon: HandHeart, text: 'স্বেচ্ছাসেবক' },
+    { to: '/be-a-volunteer', icon: HandHeart, text: 'স্বেচ্ছাসেবক হোন' },
     { to: '/donate', icon: HeartHandshake, text: 'আর্থিক অনুদান' },
     { to: '/certificate', icon: Award, text: 'সার্টিফিকেট' },
     { to: '/hospitals', icon: Building2, text: 'হাসপাতাল' },
@@ -206,14 +307,31 @@ const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
   ];
 
   return (
-    <>
+    <nav className="space-y-2">
       {links.map((link) => (
-        <Link key={link.to} to={link.to} className={linkClass(link.to)}>
-          <link.icon className="h-3 w-3 lg:h-4 lg:w-4" />
+        <Link
+          key={link.to}
+          to={link.to}
+          className={linkClass(link.to)}
+          onClick={onLinkClick}
+        >
+          <link.icon className="h-5 w-5" />
           <span>{link.text}</span>
         </Link>
       ))}
-    </>
+      <div className="pt-4 border-t border-gray-200">
+        <a
+          href="https://ridoan-zisan.netlify.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-3 px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-blood-600 hover:bg-blood-50 transition-colors"
+          onClick={onLinkClick}
+        >
+          <Code2 className="h-5 w-5" />
+          <span>Developer Info</span>
+        </a>
+      </div>
+    </nav>
   );
 };
 
