@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Wallet, CreditCard, AlertCircle, Copy, Check, HeartHandshake } from 'lucide-react';
+import { Wallet, CreditCard, AlertCircle, Copy, Check, HeartHandshake, ExternalLink } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -72,16 +72,7 @@ export default function Donate() {
       <div className="container mx-auto px-4 max-w-md space-y-4">
         {/* Payment Methods */}
         <Card className="shadow-sm border-0 bg-white">
-          <CardHeader className="pb-3 text-center">
-            <div className="w-10 h-10 bg-blood-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-              <Wallet className="h-5 w-5 text-blood-600" />
-            </div>
-            <CardTitle className="text-base">কিভাবে অনুদান দেবেন</CardTitle>
-            <CardDescription className="text-sm">
-              অনুদান প্রদানের জন্য এই ধাপগুলি অনুসরণ করুন
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 p-6">
             <div className="grid grid-cols-1 gap-3">
               {paymentMethods.map((method) => (
                 <div
@@ -114,38 +105,39 @@ export default function Donate() {
                 </div>
               ))}
             </div>
-
-            <Card className="bg-blue-50 border-blue-200">
-              <CardContent className="p-3">
-                <div className="flex items-start gap-3">
-                  <AlertCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-blue-900 mb-2 text-sm">
-                      পেমেন্ট নির্দেশাবলী:
-                    </h4>
-                    <ol className="space-y-1 text-xs text-blue-800">
-                      {instructions.map((instruction, index) => (
-                        <li key={index}>
-                          {index + 1}. {instruction}
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </CardContent>
         </Card>
 
-        {/* Donation Form */}
+        {/* Payment Instructions */}
+        <Card className="bg-blue-50 border-blue-200 shadow-sm border-0">
+          <CardContent className="p-4">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <h4 className="font-semibold text-blue-900 mb-2 text-sm">
+                  পেমেন্ট নির্দেশাবলী:
+                </h4>
+                <ol className="space-y-1 text-xs text-blue-800">
+                  {instructions.map((instruction, index) => (
+                    <li key={index}>
+                      {index + 1}. {instruction}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Donation Form Link */}
         <Card className="shadow-sm border-0 bg-gradient-to-r from-blood-50 to-pink-50 border-blood-200">
           <CardHeader className="text-center pb-3">
             <div className="w-10 h-10 bg-blood-100 rounded-lg flex items-center justify-center mx-auto mb-2">
               <CreditCard className="h-5 w-5 text-blood-600" />
             </div>
-            <CardTitle className="text-base text-blood-900">অনুদানের বিবৃতি জমা দিন</CardTitle>
+            <CardTitle className="text-base text-blood-900">যোগাযোগের জন্য</CardTitle>
             <CardDescription className="text-blood-800 text-sm">
-              অনুদান সম্পূর্ণ করতে ফর্মটি পূরণ করুন
+              অনুদান সংক্রান্ত যেকোনো প্রশ্নের জন্য যোগাযোগ করুন
             </CardDescription>
           </CardHeader>
           <CardContent className="text-center">
@@ -154,8 +146,10 @@ export default function Donate() {
                 href="https://docs.google.com/forms/d/e/1FAIpQLSeRg5unKNOp5OAalKuoPS0FZ2y1W7TUEt5MXvhUKIv-lnt7NA/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
               >
-                অনুদান ফর্ম খুলুন
+                <ExternalLink className="h-4 w-4" />
+                যোগাযোগ ফর্ম খুলুন
               </a>
             </Button>
           </CardContent>

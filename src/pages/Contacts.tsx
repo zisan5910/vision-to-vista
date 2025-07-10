@@ -6,7 +6,7 @@ import {
   MapPin,
   Clock,
   Send,
-  ArrowLeft,
+  Code,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -72,18 +72,22 @@ const Contacts = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* App Header */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-8 text-center">
-          <div className="w-16 h-16 bg-blood-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <img src="/bobdo.png" alt="BOBDO" className="w-10 h-10" />
+      <section className="bg-white py-4">
+        <div className="container mx-auto px-4 max-w-md text-center">
+          <div className="w-16 h-16 mx-auto mb-3">
+            <img 
+              src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
+              alt="BOBDO Logo" 
+              className="h-full w-full object-contain"
+            />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">যোগাযোগ করুন</h1>
+          <h1 className="text-lg font-bold text-gray-900">যোগাযোগ করুন</h1>
         </div>
-      </div>
+      </section>
 
-      <div className="container mx-auto px-4 py-6 space-y-6">
+      <div className="container mx-auto px-4 max-w-md space-y-4">
         {/* Contact Form */}
-        <Card className="shadow-sm border-0">
+        <Card className="shadow-sm border-0 bg-white">
           <CardContent className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -155,35 +159,10 @@ const Contacts = () => {
           </CardContent>
         </Card>
 
-        {/* Address & Working Hours */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="shadow-sm border-0">
-            <CardContent className="p-6 text-center">
-              <div className="w-12 h-12 bg-blood-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <MapPin className="h-6 w-6 text-blood-600" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">ঠিকানা</h3>
-              <p className="text-gray-600 text-sm">সাতমাথা, বগুড়া</p>
-              <p className="text-gray-600 text-sm">বাংলাদেশ</p>
-            </CardContent>
-          </Card>
-
-          <Card className="shadow-sm border-0">
-            <CardContent className="p-6 text-center">
-              <div className="w-12 h-12 bg-blood-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-6 w-6 text-blood-600" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">কর্মঘণ্টা</h3>
-              <p className="text-gray-600 text-sm">জরুরি সেবা</p>
-              <p className="text-gray-600 text-sm">২৪/৭ উপলব্ধ</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Contact Numbers */}
+        {/* Contact Information */}
         <Card className="shadow-sm border-0">
           <CardContent className="p-6">
-            <h3 className="font-semibold text-gray-900 mb-4 text-center">যোগাযোগ</h3>
+            <h3 className="text-base font-semibold text-gray-900 mb-4 text-center">যোগাযোগ</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3">
@@ -235,14 +214,56 @@ const Contacts = () => {
                   ইমেইল করুন
                 </Button>
               </div>
+
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-3">
+                  <Code className="h-5 w-5 text-blood-600" />
+                  <div>
+                    <p className="text-sm font-medium">ডেভলপার সহায়তা</p>
+                    <p className="text-sm text-gray-600">ridoan.zisan@gmail.com</p>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => window.open('mailto:ridoan.zisan@gmail.com', '_self')}
+                >
+                  ইমেইল করুন
+                </Button>
+              </div>
             </div>
           </CardContent>
         </Card>
 
+        {/* Address & Working Hours */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Card className="shadow-sm border-0">
+            <CardContent className="p-6 text-center">
+              <div className="w-12 h-12 bg-blood-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <MapPin className="h-6 w-6 text-blood-600" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">ঠিকানা</h3>
+              <p className="text-gray-600 text-sm">সাতমাথা, বগুড়া</p>
+              <p className="text-gray-600 text-sm">বাংলাদেশ</p>
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-sm border-0">
+            <CardContent className="p-6 text-center">
+              <div className="w-12 h-12 bg-blood-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="h-6 w-6 text-blood-600" />
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">কর্মঘণ্টা</h3>
+              <p className="text-gray-600 text-sm">জরুরি সেবা</p>
+              <p className="text-gray-600 text-sm">২৪/৭ উপলব্ধ</p>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Google Map */}
         <Card className="shadow-sm border-0">
           <CardContent className="p-6">
-            <h3 className="font-semibold text-gray-900 mb-4 text-center">আমাদের অবস্থান</h3>
+            <h3 className="text-base font-semibold text-gray-900 mb-4 text-center">আমাদের অবস্থান</h3>
             <div className="w-full aspect-video rounded-xl overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.454787351233!2d89.36973922442924!3d24.848312245745298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fc5588105b94a3%3A0x5502254b1806651f!2sBogra%20Online%20Blood%20Donation%20Organization%20(BOBDO)!5e0!3m2!1sen!2sbd!4v1744263007774!5m2!1sen!2sbd"
