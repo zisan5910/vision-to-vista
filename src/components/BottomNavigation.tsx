@@ -18,8 +18,9 @@ const BottomNavigation = () => {
       id: 'community',
       label: 'কমিউনিটি',
       icon: Users,
-      path: '/be-a-volunteer',
-      isActive: location.pathname === '/be-a-volunteer'
+      path: 'https://www.facebook.com/groups/BOBO.BD',
+      isActive: false,
+      isExternal: true
     },
     {
       id: 'donate',
@@ -42,6 +43,22 @@ const BottomNavigation = () => {
       <div className="grid grid-cols-4 h-16">
         {navItems.map((item) => {
           const Icon = item.icon;
+          
+          if (item.isExternal) {
+            return (
+              <a
+                key={item.id}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center space-y-1 transition-colors duration-200 text-gray-600 hover:text-red-600 hover:bg-red-50"
+              >
+                <Icon className="h-5 w-5" />
+                <span className="text-xs font-medium">{item.label}</span>
+              </a>
+            );
+          }
+          
           return (
             <Link
               key={item.id}
