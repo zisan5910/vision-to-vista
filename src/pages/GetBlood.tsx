@@ -40,31 +40,41 @@ const GetBlood = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Mobile Header */}
-      <section className="bg-white pt-4 pb-6">
-        <div className="container mx-auto px-4 max-w-md">
-          <div className="text-center mb-6">
-            <div className="w-16 h-16 bg-blood-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Droplet className="h-8 w-8 text-blood-600" />
-            </div>
-            <h1 className="text-xl font-bold text-gray-900 mb-2">রক্তের জন্য আবেদন করুন</h1>
-            <p className="text-sm text-gray-600">আপনার বা আপনার প্রিয়জনের রক্ত প্রয়োজন? আমরা আপনাকে দ্রুত সাহায্য করতে এখানে আছি।</p>
+      {/* App Header */}
+      <section className="bg-white py-4">
+        <div className="container mx-auto px-4 max-w-md text-center">
+          <div className="w-16 h-16 mx-auto mb-3">
+            <img 
+              src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
+              alt="BOBDO Logo" 
+              className="h-full w-full object-contain"
+            />
           </div>
-
-          {/* Primary Action */}
-          <Button asChild className="w-full bg-blood-600 hover:bg-blood-700 h-12 rounded-xl mb-4">
-            <a
-              href="https://www.facebook.com/groups/BOBO.BD/?ref=share&mibextid=NSMWBT"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              গ্রুপে পোস্ট করুন
-            </a>
-          </Button>
+          <h1 className="text-lg font-bold text-gray-900">রক্তের জন্য আবেদন করুন</h1>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 max-w-md space-y-6">
+      <div className="container mx-auto px-4 max-w-md space-y-4">
+        {/* Primary Action - Facebook Group */}
+        <Card className="shadow-sm border-0 bg-red-50 border-red-200">
+          <CardContent className="p-4 text-center">
+            <h3 className="font-semibold text-red-900 mb-2 text-sm">গ্রুপে পোস্ট করুন</h3>
+            <p className="text-red-800 text-xs mb-3">দ্রুত রক্তদাতা খুঁজতে আমাদের ফেসবুক গ্রুপে পোস্ট করুন</p>
+            <Button
+              asChild
+              className="w-full bg-red-600 hover:bg-red-700 h-10 rounded-xl"
+            >
+              <a
+                href="https://www.facebook.com/groups/BOBO.BD/?ref=share&mibextid=NSMWBT"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                গ্রুপে পোস্ট করুন
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+
         {/* Emergency Contact */}
         <Card className="bg-gradient-to-r from-red-50 to-pink-50 border-red-200 shadow-sm">
           <CardContent className="p-4">
@@ -73,15 +83,15 @@ const GetBlood = () => {
                 <AlertCircle className="h-5 w-5 text-red-600" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-red-900 mb-2">জরুরি প্রয়োজন?</h3>
-                <p className="text-red-800 text-sm mb-3">যদি আপনার জরুরি ভিত্তিতে রক্তের প্রয়োজন হয়:</p>
+                <h3 className="font-bold text-red-900 mb-2 text-sm">জরুরি যোগাযোগ</h3>
+                <p className="text-red-800 text-xs mb-3">জরুরি প্রয়োজনে সরাসরি যোগাযোগ করুন:</p>
                 <div className="space-y-2">
                   <a
                     href="tel:01722528164"
                     className="flex items-center gap-2 bg-red-600 text-white px-3 py-2 rounded-xl hover:bg-red-700 transition-colors text-sm font-medium"
                   >
                     <Phone className="h-4 w-4" />
-                    ০১৭২২-৫২৮১৬৪
+                    ০১৭২২-৫২৮১৬৤
                   </a>
                   <a
                     href="mailto:bobdo5800@gmail.com"
@@ -96,11 +106,11 @@ const GetBlood = () => {
           </CardContent>
         </Card>
 
-        {/* Requirements & Documents - 1x2 Grid */}
+        {/* Requirements & Documents */}
         <div className="space-y-4">
           <Card className="shadow-sm border-0 bg-white">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg flex items-center gap-2">
+              <CardTitle className="text-base flex items-center gap-2">
                 <CheckSquare className="h-5 w-5 text-blood-600" />
                 প্রয়োজনীয় তথ্য
               </CardTitle>
@@ -119,7 +129,7 @@ const GetBlood = () => {
 
           <Card className="shadow-sm border-0 bg-white">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg flex items-center gap-2">
+              <CardTitle className="text-base flex items-center gap-2">
                 <AlertCircle className="h-5 w-5 text-orange-600" />
                 প্রয়োজনীয় নথিপত্র
               </CardTitle>
@@ -137,10 +147,10 @@ const GetBlood = () => {
           </Card>
         </div>
 
-        {/* Blood Compatibility Chart - 2x4 Grid */}
+        {/* Blood Compatibility Chart */}
         <Card className="shadow-sm border-0 bg-white">
           <CardHeader className="text-center pb-3">
-            <CardTitle className="text-lg">রক্তের গ্রুপ সামঞ্জস্যতা চার্ট</CardTitle>
+            <CardTitle className="text-base">রক্তের গ্রুপ সামঞ্জস্যতা চার্ট</CardTitle>
             <p className="text-gray-600 text-sm">কোন রক্তের গ্রুপ কাকে দিতে পারে</p>
           </CardHeader>
           <CardContent>
@@ -164,10 +174,10 @@ const GetBlood = () => {
           </CardContent>
         </Card>
 
-        {/* Process Steps - 2x2 Grid */}
+        {/* Process Steps */}
         <Card className="shadow-sm border-0 bg-white">
           <CardHeader className="text-center pb-3">
-            <CardTitle className="text-lg">আবেদনের প্রক্রিয়া</CardTitle>
+            <CardTitle className="text-base">আবেদনের প্রক্রিয়া</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-3">
